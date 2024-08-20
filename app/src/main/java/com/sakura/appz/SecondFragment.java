@@ -14,6 +14,7 @@ import com.sakura.appz.databinding.FragmentSecondBinding;
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
+    public static int nums2 = 0;
 
     @Override
     public View onCreateView(
@@ -28,10 +29,12 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.textviewSecond.setText(String.valueOf(nums2++));
 
         binding.buttonSecond.setOnClickListener(v ->
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment)
+
         );
     }
 

@@ -18,6 +18,10 @@ import com.sakura.appz.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -29,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+//        try {
+//            Process p  = Runtime.getRuntime().exec("su");
+//            DataInputStream is = new DataInputStream(p.getInputStream());
+//            DataOutputStream os = new DataOutputStream(p.getOutputStream());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         setSupportActionBar(binding.toolbar);
 
