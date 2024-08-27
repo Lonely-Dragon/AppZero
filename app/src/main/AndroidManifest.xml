@@ -22,18 +22,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name="com.sakura.Intercept.MyReceiver"
-            android:exported="true">
+
+
+        <service
+            android:name="com.sakura.Intercept.MyVpnService"
+            android:exported="true"
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            android:process=":shadowsocks">
             <intent-filter>
-                <action android:name="android.intent.actiion.xbxxz"/>
-                <data android:scheme="package"/>
+                <action android:name="android.net.VpnService" />
             </intent-filter>
-        </receiver>
+        </service>
 
 
         <service android:name="com.sakura.Intercept.MyReceiver"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.actiion.xbxxz"/>
                 <data android:scheme="package"/>

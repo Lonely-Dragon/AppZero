@@ -1,5 +1,7 @@
 package com.sakura.appz;
 
+import android.content.Intent;
+import android.net.VpnService;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -22,6 +24,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import com.sakura.Intercept.MyVpnService;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -33,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        try {
-//            Process p  = Runtime.getRuntime().exec("su");
-//            DataInputStream is = new DataInputStream(p.getInputStream());
-//            DataOutputStream os = new DataOutputStream(p.getOutputStream());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        //        try {
+        //            Process p  = Runtime.getRuntime().exec("su");
+        //            DataInputStream is = new DataInputStream(p.getInputStream());
+        //            DataOutputStream os = new DataOutputStream(p.getOutputStream());
+        //        } catch (IOException e) {
+        //            throw new RuntimeException(e);
+        //        }
 
         setSupportActionBar(binding.toolbar);
 
@@ -50,10 +54,28 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.fab.setVisibility(View.INVISIBLE);
+                // 隐藏
+                // binding.fab.setVisibility(View.INVISIBLE);
+                // 获取权限
+                // Intent intent = VpnService.prepare(view.getContext());
+                // if (intent != null) {
+                //     startActivityForResult(intent, 0);
+                //     // startActivityIfNeeded()
+                // } else {
+                //     onActivityResult(0, RESULT_OK, null);
+                // }
+
             }
         });
     }
+
+    // public void onActivityResult(int request, int result, Intent data) {
+    //     super.onActivityResult(request, result, data);
+    //     if (result == RESULT_OK) {
+    //         Intent intent = new Intent(this.getContext(), MyVpnService.class);
+    //         startService(intent);
+    //     }
+    // }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        // noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -80,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+        return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
 }
